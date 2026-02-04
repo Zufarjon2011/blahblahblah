@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Happy 15th Birthday, Abdulbasit!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
+    <style>
+        /* Resetting basic styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #0a0a0a, #1a1a2e);
+            font-family: 'Orbitron', sans-serif;
+            overflow: hidden;
+        }
+
+        .envelope-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            height: 400px;
+            cursor: pointer;
+        }
+
+        .envelope {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            perspective: 1200px;
+        }
+
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: #2c2c54;
+            border-bottom: 2px solid #1a1a2e;
+            transform-origin: top;
+            transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            clip-path: polygon(0 0, 50% 100%, 100% 0);
+            z-index: 2;
+        }
+
+        .envelope-body {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #3a3a6b, #2c2c54);
+            border: 5px solid #1a1a2e;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .envelope-seal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #ff4d4d;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            animation: spinAndGlow 2s infinite ease-in-out;
+            z-index: 3;
+            box-shadow: 0 0 15px rgba(255, 77, 77, 0.7);
+            transition: opacity 0.5s ease;
+        }
+
+        .letter {
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 80%;
+            height: 80%;
+            background: #fff;
+            border-radius: 10px;
+            transform: translateY(100%) scale(0.8);
+            opacity: 0;
+            transition: transform 1s ease, opacity 0.8s ease;
+            z-index: 1;
+        }
+
+        .card {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #1e1e3f, #2c2c54);
+            color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.5s ease;
+        }
+
+        .card h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #00ffcc;
+            text-shadow: 0 0 10px #00ffcc;
+        }
+
+        .card p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+            color: #e0e0e0;
+        }
+
+        /* Opening animation for the envelope */
+        .envelope-wrapper.open .envelope-flap {
+            transform: rotateX(180deg);
+        }
+
+        .envelope-wrapper.open .letter {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+
+        .envelope-wrapper.open .envelope-seal {
+            opacity: 0;
+            pointer-events: none; /* Prevent clicking after hidden */
+        }
+
+        /* Fireworks at screen corners */
+        .corner-fireworks {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        .firework {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: transparent;
+        }
+
+        .firework.tl {
+            top: 20px;
+            left: 20px;
+            color: #ff4d4d;
+        }
+        .firework.tr {
+            top: 20px;
+            right: 20px;
+            color: #00ffcc;
+        }
+        .firework.bl {
+            bottom: 20px;
+            left: 20px;
+            color: #ffd700;
+        }
+        .firework.br {
+            bottom: 20px;
+            right: 20px;
+            color: #7b68ee;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: scale(1) translate(0, 0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0) translate(40px, -40px);
+                opacity: 0;
+            }
+        }
+
+        .firework::before,
+        .firework::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: currentColor;
+            border-radius: 50%;
+            animation: explode 1.5s infinite ease-out;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="envelope-wrapper">
+        <div class="envelope">
+            <div class="envelope-flap"></div>
+            <div class="envelope-body">
+                <div class="envelope-seal">Click to Open</div>
+            </div>
+            <div class="letter">
+                <div class="card">
+                    <h1>Happy 15th Birthday, Abdulbasit!</h1>
+                    <p>Yo, Abdulbasit! You're officially 15, leveling up like a boss! 🎉</p>
+                    <p>Wishing you an epic year full of victories, adventures, and straight-up awesome vibes!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fireworks in the corners of the screen -->
+    <div class="corner-fireworks">
+        <div class="firework tl"></div>
+        <div class="firework tr"></div>
+        <div class="firework bl"></div>
+        <div class="firework br"></div>
+    </div>
+
+    <script>
+        const envelopeWrapper = document.querySelector('.envelope-wrapper');
+
+        envelopeWrapper.addEventListener('click', () => {
+            if (!envelopeWrapper.classList.contains('open')) {
+                // Add open class
+                envelopeWrapper.classList.add('open');
+            }
+        });
+    </script>
+</body>
+</html>
